@@ -1,0 +1,95 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    @apply text-slate-200 antialiased;
+    /* Deep forest green backdrop with faint emerald light */
+    background-color: #0a1210;
+    background-image:
+      radial-gradient(ellipse 900px 500px at 80% -5%, rgba(52, 211, 153, 0.06), transparent),
+      radial-gradient(ellipse 700px 600px at 0% 100%, rgba(16, 185, 129, 0.04), transparent),
+      linear-gradient(160deg, #0a1210 0%, #0d1a16 100%);
+    background-attachment: fixed;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply rounded-full;
+    background: rgba(148, 163, 184, 0.2);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(148, 163, 184, 0.4);
+  }
+}
+
+@layer components {
+  /* Frosted-glass surface (lighter blur for a precise, instrument-panel feel) */
+  .glass {
+    background: rgba(255, 255, 255, 0.035);
+    backdrop-filter: blur(8px) saturate(130%);
+    -webkit-backdrop-filter: blur(8px) saturate(130%);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.04) inset,
+      0 8px 24px -14px rgba(0, 0, 0, 0.55);
+  }
+
+  /* Base card = glass + precise corners + smooth motion */
+  .card {
+    @apply glass rounded-xl transition-all duration-200;
+  }
+
+  .sheen {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .stat-label {
+    @apply text-[10px] font-medium uppercase tracking-widest text-white/40;
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: 'Syne', sans-serif;
+  }
+  .font-data {
+    font-family: 'DM Mono', monospace;
+  }
+
+  /* Hover glow — amber halo, set --glow to override the color per element. */
+  .glow-hover {
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease,
+      border-color 0.2s ease;
+  }
+  .glow-hover:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 40px -14px var(--glow, rgba(245, 158, 11, 0.5));
+    border-color: rgba(245, 158, 11, 0.4);
+  }
+
+  .icon-glow {
+    box-shadow: 0 0 24px -6px var(--glow, rgba(245, 158, 11, 0.45));
+  }
+
+  .text-glow {
+    text-shadow: 0 2px 18px rgba(0, 0, 0, 0.4);
+  }
+}
